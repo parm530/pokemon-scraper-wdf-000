@@ -11,7 +11,12 @@ class Pokemon
   end
 
   def self.find(id, database_connection)
-    database_connection.execute("SELECT id, name, type FROM pokemon WHERE id = ?", id)
+    pkmn_info = database_connection.execute("SELECT id, name, type FROM pokemon WHERE id = ?", id)
   end
-  
+
+  def alter_hp(new_hp)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, id)
+  end
+
 end
+
